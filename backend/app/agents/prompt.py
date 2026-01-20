@@ -1,3 +1,5 @@
+from app.models.schemas import TripPlan
+
 ATTRACTION_AGENT_PROMPT = """
 你是景点搜索专家。你的任务是根据城市和用户偏好搜索合适的景点。
 
@@ -37,83 +39,24 @@ HOTEL_AGENT_PROMPT = """
 你的行为: 调用maps_text_search工具, 参数keywords=经济型酒店, city=北京
 """
 
-PLANNER_AGENT_PROMPT = """
+PLANNER_AGENT_PROMPT = f"""
 你是行程规划专家。你的任务是根据景点信息和天气信息,生成详细的旅行计划。
 
 **规则：**
-1. 输出一个合法的 JSON 对象，不要包含任何其他文字、解释、注释或 Markdown。
-2. JSON 必须符合 RFC 8259 标准，不能包含控制字符(如换行符 \n), 所有字符串中的特殊字符必须正确转义。
-3. 所有字段名和结构必须与下方示例完全一致。
-```json
-{
-  "city": "城市名称",
-  "start_date": "YYYY-MM-DD",
-  "end_date": "YYYY-MM-DD",
-  "days": [
-    {
-      "date": "YYYY-MM-DD",
-      "day_index": 0,
-      "description": "第1天行程概述",
-      "transportation": "交通方式",
-      "accommodation": "住宿类型",
-      "hotel": {
-        "name": "酒店名称",
-        "address": "酒店地址",
-        "location": {"longitude": 116.397128, "latitude": 39.916527},
-        "price_range": "300-500元",
-        "rating": "4.5",
-        "distance": "距离景点2公里",
-        "type": "经济型酒店",
-        "estimated_cost": 400
-      },
-      "attractions": [
-        {
-          "name": "景点名称",
-          "address": "详细地址",
-          "location": {"longitude": 116.397128, "latitude": 39.916527},
-          "visit_duration": 120,
-          "description": "景点详细描述",
-          "category": "景点类别",
-          "ticket_price": 60
-        }
-      ],
-      "meals": [
-        {"type": "breakfast", "name": "早餐推荐", "description": "早餐描述", "estimated_cost": 30},
-        {"type": "lunch", "name": "午餐推荐", "description": "午餐描述", "estimated_cost": 50},
-        {"type": "dinner", "name": "晚餐推荐", "description": "晚餐描述", "estimated_cost": 80}
-      ]
-    }
-  ],
-  "weather_info": [
-    {
-      "date": "YYYY-MM-DD",
-      "day_weather": "晴",
-      "night_weather": "多云",
-      "day_temp": 25,
-      "night_temp": 15,
-      "wind_direction": "南风",
-      "wind_power": "1-3级"
-    }
-  ],
-  "overall_suggestions": "总体建议",
-  "budget": {
-    "total_attractions": 180,
-    "total_hotels": 1200,
-    "total_meals": 480,
-    "total_transportation": 200,
-    "total": 2060
-  }
-}
-```
-4. weather_info数组必须包含每一天的天气信息
-5. 温度必须是纯数字(不要带°C等单位)
-6. 每天安排2-3个景点
-7. 考虑景点之间的距离和游览时间
-8. 每天必须包含早中晚三餐
-9. 提供实用的旅行建议
-10. **必须包含预算信息**:
+1. 输出一个合法的TripPlan对象，不要包含任何其他文字、解释、注释或 Markdown。
+2. weather_info数组必须包含每一天的天气信息
+3. 温度必须是纯数字(不要带°C等单位)
+4. 每天安排2-3个景点
+5. 考虑景点之间的距离和游览时间
+6. 每天必须包含早中晚三餐
+7. 提供实用的旅行建议
+8. 必须包含预算信息:
    - 景点门票价格(ticket_price)
    - 餐饮预估费用(estimated_cost)
    - 酒店预估费用(estimated_cost)
    - 预算汇总(budget)包含各项总费用
+
+ **示例:**
+用户: 请根据一下信息生成旅行计划: ...
+你的输出: {TripPlan.model_json_schema()}
 """
