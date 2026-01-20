@@ -10,12 +10,15 @@ from langchain_core.messages import AnyMessage, AIMessage
 from typing import Annotated, Optional, TypedDict
 import operator
 from .prompt import ATTRACTION_AGENT_PROMPT, WEATHER_AGENT_PROMPT, HOTEL_AGENT_PROMPT, PLANNER_AGENT_PROMPT
+from app.config import get_settings
 
-AMAP_API_KEY="223f5fc1a756b4cae5d93bd91295a3ab"
+# 获取配置
+settings = get_settings()
+
 llm = ChatOpenAI(
-    model="MiniMax-M2.1",
-    api_key="sk-api-E3VIM6GG9h7tk4gZ7sTBmt9HzyNaNeqXesHElewlPEvYcGGbUt898u9mfaK5p5GXF0xYAllVT1iI-srH4Cc5YLoEBxyHmSUAT-uwxmHjXeoYuD8srti4nOw",
-    base_url="https://api.minimaxi.com/v1",
+    model=settings.LLM_MODEL_ID,
+    api_key=settings.LLM_API_KEY,
+    base_url=settings.LLM_BASE_URL  ,
     temperature=0.0
 )
 
@@ -25,7 +28,7 @@ async def get_mcp_tools():
         "amap-mcp-server":{
             "command": "uvx",
             "args": ["amap-mcp-server"],
-            "env": {"AMAP_MAPS_API_KEY": AMAP_API_KEY}, 
+            "env": {"AMAP_MAPS_API_KEY": settings.amap_api_key}, 
             "transport": "stdio"
         }
     })
@@ -37,6 +40,7 @@ async def get_mcp_tools():
     #         "transport": "sse"
     #     }
     # })
+
     # 异步获取 MCP 工具
     tools = await client.get_tools()
     print(f"Loaded {len(tools)} tools from Amap MCP server.")
