@@ -1,6 +1,10 @@
-langchain==1.2.4
+fastapi==0.128.0
+langchain==1.2.6
 langchain_core==1.2.7
 langchain_mcp_adapters==0.2.1
 langchain_openai==1.1.7
 pydantic==2.12.5
+pydantic_settings==2.12.0
+pytest==9.0.2
+uvicorn==0.40.0
 uv==0.9.25
