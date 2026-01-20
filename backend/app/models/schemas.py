@@ -12,22 +12,7 @@ class TripRequest(BaseModel):
     transportation: str = Field(..., description="交通方式", json_schema_extra={"example": "公共交通"})
     accommodation: str = Field(..., description="住宿偏好", json_schema_extra={"example": "经济型酒店"})
     preferences: List[str] = Field(default=[], description="旅行偏好标签", json_schema_extra={"example": ["历史文化", "美食"]})
-    free_text_input: Optional[str] = Field(default="", description="额外要求", json_schema_extra="希望多安排一些博物馆")
-    
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "city": "北京",
-                "start_date": "2026-01-20",
-                "end_date": "2026-01-20",
-                "travel_days": 3,
-                "transportation": "公共交通",
-                "accommodation": "经济型酒店",
-                "preferences": ["历史文化", "美食"],
-                "free_text_input": "希望多安排一些博物馆"
-            }
-        }
-
+    free_text_input: Optional[str] = Field(default="", description="额外要求", json_schema_extra={"example": "希望多安排一些博物馆"})
 
 class POISearchRequest(BaseModel):
     """POI搜索请求"""

@@ -1,6 +1,7 @@
 
 from pathlib import Path
 from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # 项目根目录
 
@@ -28,11 +29,12 @@ class Settings(BaseSettings):
     LLM_BASE_URL: str = ""
     LLM_API_KEY: str = ""
 
-    class Config:
-        env_file = str(BASE_DIR / ".env")
-        case_sensitive = False
+    model_config = ConfigDict(
+        env_file = str(BASE_DIR / ".env"),
+        case_sensitive = False,
         extra = "ignore"  # 忽略额外的环境变量
-
+    )
+    
     def get_cors_origins_list(self):
         """获取CORS origins列表"""
         return [origin.strip() for origin in self.cors_origins.split(',')]
