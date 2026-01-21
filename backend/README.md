@@ -1,4 +1,4 @@
-# Travel-Agent 后端服务
+# Trip-Agent 后端服务
 
 基于 FastAPI + LangGraph + 高德地图MCP 的 AI 旅行规划后端服务。
 

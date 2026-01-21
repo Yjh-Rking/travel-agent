@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent  # 项目根目录
 
 
 class Settings(BaseSettings):
-    app_name: str = "Travel-Agent智能旅行助手"
+    app_name: str = "Trip-Agent智能旅行助手"
     app_version: str = "1.0.0"
     log_level: str = "INFO"
 
@@ -41,8 +41,16 @@ class Settings(BaseSettings):
         print(f"应用名称: {self.app_name}")
         print(f"版本: {self.app_version}")
         print(f"服务器: {self.host}:{self.port}")
-        print(f"高德地图API Key: {self.amap_api_key[:10]}..." if self.amap_api_key else "高德地图API Key: 未配置")
-        print(f"LLM API Key: {self.LLM_API_KEY[:10]}..." if self.LLM_API_KEY else "LLM API Key: 未配置")
+        print(
+            f"高德地图API Key: {self.amap_api_key[:10]}..."
+            if self.amap_api_key
+            else "高德地图API Key: 未配置"
+        )
+        print(
+            f"LLM API Key: {self.LLM_API_KEY[:10]}..."
+            if self.LLM_API_KEY
+            else "LLM API Key: 未配置"
+        )
         print(f"LLM Base URL: {self.LLM_BASE_URL}")
         print(f"LLM Model: {self.LLM_MODEL_ID}")
         print(f"日志级别: {self.log_level}")

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Travel-Agent 一键启动脚本
+# Trip-Agent 一键启动脚本
 
 set -e
 
@@ -10,7 +10,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo "🚀 Travel-Agent 启动脚本"
+echo "🚀 Trip-Agent 启动脚本"
 echo ""
 
 # 检查 Python 版本

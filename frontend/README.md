@@ -1,4 +1,4 @@
-# Travel-Agent 前端工程
+# Trip-Agent 前端工程
 
 基于 AI 的个性化旅行行程规划前端应用。
 本前端工程完全由AI实现，开发工具使用Claude Code + Minimax

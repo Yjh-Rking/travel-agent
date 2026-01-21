@@ -1,4 +1,4 @@
-# Travel-Agent 智能旅行助手
+# Trip-Agent 智能旅行助手
 
 基于 AI 的个性化旅行行程规划系统。
 
@@ -48,7 +48,7 @@ npm run dev
 ## 目录结构
 
 ```
-travel-agent/
+Trip-agent/
 ├── backend/           # FastAPI 后端
 │   ├── app/           # 应用代码
 │   ├── requirements.txt
@@ -68,4 +68,4 @@ travel-agent/
 
 
 ## 前端界面示例
-![Front HomeView](<docs/images/Travel-Agent Homeview.jpeg>)
+![Front HomeView](<docs/images/Trip-Agent Homeview.jpeg>)

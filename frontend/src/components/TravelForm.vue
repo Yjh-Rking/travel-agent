@@ -109,7 +109,7 @@ const handleReset = () => {
 <template>
   <div class="container">
     <div class="header">
-      <h1 class="title">Travel-Agent 智能旅行助手</h1>
+      <h1 class="title">Trip-Agent 智能旅行助手</h1>
       <p class="subtitle">基于AI的个性化旅行行程规划</p>
     </div>
 
